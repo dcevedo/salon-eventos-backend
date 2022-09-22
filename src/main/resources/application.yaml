@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+spring:
+  profiles:
+    active: @spring.profiles.active@
+--- 
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: ${DEV_URL}
+    driver-class-name: ${DEV_DRIVER}
+    username: ${DEV_USERNAME}
+    password: ${DEV_PASSWORD}
