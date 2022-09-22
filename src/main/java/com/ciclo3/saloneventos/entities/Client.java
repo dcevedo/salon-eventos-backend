@@ -30,6 +30,8 @@ public class Client {
     @Column(name = "age")
     private Integer age;
 
+    public Client(){}
+    
     public Client(String name, String email, Integer age) {
         this.name = name;
         this.email = email;
