@@ -2,9 +2,17 @@ server:
   port: 8080
   error:
     include-stacktrace: never
+# logging:
+#   level:
+#     org.springframework.web: DEBUG
 spring:
   profiles:
     active: @spring.profiles.active@
+  config:
+    import: file:./spring.env[.properties]
+  output:
+    ansi:
+      enabled: always
 --- 
 spring:
   config:

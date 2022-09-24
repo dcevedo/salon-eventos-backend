@@ -3,10 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
+		<!-- <groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.7.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>  -->
+		<groupId>com.ciclo3</groupId>
+        <artifactId>full-main</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
 	</parent>
 	<groupId>com.ciclo3</groupId>
 	<artifactId>saloneventos</artifactId>
