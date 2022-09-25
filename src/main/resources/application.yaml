@@ -8,8 +8,6 @@ server:
 spring:
   profiles:
     active: @spring.profiles.active@
-  config:
-    import: file:./spring.env[.properties]
   output:
     ansi:
       enabled: always
@@ -18,12 +16,17 @@ spring:
   config:
     activate:
       on-profile: prod
-
+  datasource:
+    url: ${PROD_URL}
+    driver-class-name: ${PROD_DRIVER}
+    username: ${PROD_USERNAME}
+    password: ${PROD_PASSWORD}
 ---
 spring:
   config:
     activate:
       on-profile: dev
+    import: file:./spring.env[.properties]
   datasource:
     url: ${DEV_URL}
     driver-class-name: ${DEV_DRIVER}
