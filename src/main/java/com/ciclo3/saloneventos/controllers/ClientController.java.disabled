@@ -22,8 +22,11 @@ import com.ciclo3.saloneventos.services.IClientService;
 @RequestMapping("/api/clients")
 public class ClientController {
 
-    @Autowired
     IClientService clientService;
+
+    public ClientController(IClientService clientService){
+        this.clientService = clientService;
+    }
 
     @GetMapping("{id}")
     public ResponseEntity<Client> findClient(@PathVariable Long id){
