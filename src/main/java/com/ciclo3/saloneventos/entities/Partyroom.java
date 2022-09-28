@@ -1,10 +1,15 @@
 package com.ciclo3.saloneventos.entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -34,8 +39,16 @@ public class Partyroom {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "category_id")
-    private Long categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @OneToMany(mappedBy = "partyroom")
+    private Set<Message> message;
+
+    @OneToMany(mappedBy = "partyroom")
+    private Set<Reservation> reservation;
+
 
     public Partyroom(){}
     
@@ -46,12 +59,23 @@ public class Partyroom {
         this.description = description;
     }
 
-    public Partyroom(String owner, Integer capacity, String name, String description, Long categoryId) {
+    public Partyroom(String owner, Integer capacity, String name, String description, Category category) {
         this.owner = owner;
         this.capacity = capacity;
         this.name = name;
         this.description = description;
-        this.categoryId = categoryId;
+        this.category = category;
+    }
+
+    public Partyroom(String owner, Integer capacity, String name, String description, Category category,
+        Set<Message> message, Set<Reservation> reservation) {
+        this.owner = owner;
+        this.capacity = capacity;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.message = message;
+        this.reservation = reservation;
     }
 
 }

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -15,27 +17,28 @@ import lombok.ToString;
 @Entity
 @Getter @Setter
 @ToString
-public class score {
+public class Score {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name="reserve_id")
-    private Long reserveId;
+    @ManyToOne
+    @JoinColumn(name="reserve_id")
+    private Reservation reservation;
 
     @Column(name = "value")
     private Integer value;
 
-    public score(){}
+    public Score(){}
     
-    public score(Integer value) {
+    public Score(Integer value) {
         this.value = value;
     }
 
-    public score(Long reserveId, Integer value) {
-        this.reserveId = reserveId;
+    public Score(Reservation reservation, Integer value) {
+        this.reservation = reservation;
         this.value = value;
     }
 }

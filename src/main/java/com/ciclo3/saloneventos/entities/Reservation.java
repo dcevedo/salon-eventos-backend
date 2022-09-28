@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -24,11 +26,13 @@ public class Reservation {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "client_id")
-    private Long clientId;
+    @ManyToOne()
+    @JoinColumn(name = "client_id")
+    private Client client;
 
-    @Column(name = "partyroom_id")
-    private Long partyroomId;
+    @ManyToOne
+    @JoinColumn(name = "partyroom_id")
+    private Partyroom partyroom;
 
     @Column(name = "startdate")
     private Date startDate;
@@ -37,14 +41,15 @@ public class Reservation {
     private Date devolutionDate;
 
     public Reservation(){}
+
     public Reservation(Date startDate, Date devolutionDate) {
         this.startDate = startDate;
         this.devolutionDate = devolutionDate;
     }
 
-    public Reservation(Long clientId, Long partyroomId, Date startDate, Date devolutionDate) {
-        this.clientId = clientId;
-        this.partyroomId = partyroomId;
+    public Reservation(Client client, Partyroom partyroom, Date startDate, Date devolutionDate) {
+        this.client = client;
+        this.partyroom = partyroom;
         this.startDate = startDate;
         this.devolutionDate = devolutionDate;
     }

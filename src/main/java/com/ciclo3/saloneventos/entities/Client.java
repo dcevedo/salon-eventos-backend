@@ -1,10 +1,13 @@
 package com.ciclo3.saloneventos.entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -34,6 +37,13 @@ public class Client {
     @Column(name = "password")
     private String password;
     
+    @OneToMany(mappedBy = "client")
+    private Set<Message> message;
+    
+    @OneToMany(mappedBy = "client")
+    private Set<Reservation> reservation;
+    
+    
     public Client(){}
     
     public Client(String name, String email, Integer age) {
@@ -48,4 +58,13 @@ public class Client {
         this.age = age;
         this.password = password;
     }    
+    public Client(String name, String email, Integer age, String password, Set<Message> message,
+            Set<Reservation> reservation) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.password = password;
+        this.message = message;
+        this.reservation = reservation;
+    }
 }

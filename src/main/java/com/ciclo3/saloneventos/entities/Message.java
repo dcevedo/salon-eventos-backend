@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -25,21 +27,21 @@ public class Message {
     @Column(name = "messagetext")
     private String messageText;
     
-    @Column(name = "partyroom_id")
-    private Long partyroomId;
+    @ManyToOne
+    @JoinColumn(name = "partyroom_id")
+    private Partyroom partyroom;
 
-    @Column(name = "client_id")
-    private Long clientId;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
     
     public Message(String messageText) {
         this.messageText = messageText;
     }
-
-    public Message(String messageText, Long partyroomId, Long clientId) {
+    public Message(String messageText, Partyroom partyroom, Client client) {
         this.messageText = messageText;
-        this.partyroomId = partyroomId;
-        this.clientId = clientId;
+        this.partyroom = partyroom;
+        this.client = client;
     }
-    
     public Message(){}
 }

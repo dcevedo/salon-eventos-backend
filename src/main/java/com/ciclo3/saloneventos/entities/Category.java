@@ -1,10 +1,13 @@
 package com.ciclo3.saloneventos.entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -28,9 +31,20 @@ public class Category {
     @Column(name= "description")
     private String description;
 
+    @OneToMany(mappedBy = "category")
+    private Set<Partyroom> partyroom;
+
     public Category(String name, String description) {
         this.name = name;
         this.description = description;
     }
+
+    public Category(String name, String description, Set<Partyroom> partyroom) {
+        this.name = name;
+        this.description = description;
+        this.partyroom = partyroom;
+    }
+
+    public Category(){}
 
 }
