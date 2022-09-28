@@ -16,6 +16,7 @@ import lombok.ToString;
 @Getter @Setter
 @ToString
 public class Client {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -30,6 +31,9 @@ public class Client {
     @Column(name = "age")
     private Integer age;
 
+    @Column(name = "password")
+    private String password;
+    
     public Client(){}
     
     public Client(String name, String email, Integer age) {
@@ -38,4 +42,10 @@ public class Client {
         this.age = age;
     }
     
+    public Client(String name, String email, Integer age, String password) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.password = password;
+    }    
 }

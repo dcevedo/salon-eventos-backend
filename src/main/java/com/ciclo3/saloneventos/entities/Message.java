@@ -25,8 +25,21 @@ public class Message {
     @Column(name = "messagetext")
     private String messageText;
     
+    @Column(name = "partyroom_id")
+    private Long partyroomId;
+
+    @Column(name = "client_id")
+    private Long clientId;
+    
     public Message(String messageText) {
         this.messageText = messageText;
     }
+
+    public Message(String messageText, Long partyroomId, Long clientId) {
+        this.messageText = messageText;
+        this.partyroomId = partyroomId;
+        this.clientId = clientId;
+    }
+    
     public Message(){}
 }
