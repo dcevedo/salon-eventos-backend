@@ -12,10 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -24,10 +21,6 @@ import lombok.ToString;
 @Entity
 @Getter @Setter
 @ToString
-// @JsonIdentityInfo(
-//   generator = ObjectIdGenerators.PropertyGenerator.class, 
-//   property = "idCategory",
-//   scope = Category.class)
 public class Category {
     
     @Id

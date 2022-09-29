@@ -11,9 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,9 +21,6 @@ import lombok.ToString;
 @Table(name="client")
 @Getter @Setter
 @ToString
-// @JsonIdentityInfo(
-//   generator = ObjectIdGenerators.PropertyGenerator.class, 
-//   property = "idClient")
 public class Client {
 
     @Id
@@ -72,13 +67,4 @@ public class Client {
         this.age = age;
         this.password = password;
     }    
-    // public Client(String name, String email, Integer age, String password, Set<Message> message,
-    //         Set<Reservation> reservation) {
-    //     this.name = name;
-    //     this.email = email;
-    //     this.age = age;
-    //     this.password = password;
-    //     this.message = message;
-    //     this.reservation = reservation;
-    // }
 }

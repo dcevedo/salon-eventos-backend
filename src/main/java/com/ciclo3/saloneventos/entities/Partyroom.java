@@ -17,9 +17,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,10 +27,6 @@ import lombok.ToString;
 @Entity
 @Setter @Getter
 @ToString
-// @JsonIdentityInfo(
-//   generator = ObjectIdGenerators.PropertyGenerator.class, 
-//   property = "id",
-//   scope = Partyroom.class)
 public class Partyroom {
 
     @Id
@@ -86,16 +80,5 @@ public class Partyroom {
         this.description = description;
         this.category = category;
     }
-
-    // public Partyroom(String owner, Integer capacity, String name, String description, Category category,
-    //     Set<Message> message, Set<Reservation> reservation) {
-    //     this.owner = owner;
-    //     this.capacity = capacity;
-    //     this.name = name;
-    //     this.description = description;
-    //     this.category = category;
-    //     this.message = message;
-    //     this.reservation = reservation;
-    // }
 
 }

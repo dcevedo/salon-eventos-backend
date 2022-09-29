@@ -12,10 +12,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -24,9 +21,6 @@ import lombok.ToString;
 @Entity
 @Getter @Setter
 @ToString
-// @JsonIdentityInfo(
-//   generator = ObjectIdGenerators.PropertyGenerator.class, 
-//   property = "idMessage")
 public class Message {
     
     @Id
