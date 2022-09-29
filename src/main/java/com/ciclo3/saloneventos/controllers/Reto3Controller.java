@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ciclo3.saloneventos.Repositories.IClientRepository;
 import com.ciclo3.saloneventos.Repositories.IMessageRepository;
 import com.ciclo3.saloneventos.Repositories.IPartyroomRepository;
 import com.ciclo3.saloneventos.Repositories.IReservationRepository;
 import com.ciclo3.saloneventos.Repositories.IScoreRepository;
-import com.ciclo3.saloneventos.entities.Client;
 import com.ciclo3.saloneventos.entities.Message;
 import com.ciclo3.saloneventos.entities.Partyroom;
 import com.ciclo3.saloneventos.entities.Reservation;
@@ -26,9 +24,6 @@ import com.ciclo3.saloneventos.entities.Reservation;
 @RequestMapping(path = "/api")
 public class Reto3Controller {
     
-    @Autowired
-    IClientRepository clientRepository;
-
     @Autowired
     IMessageRepository messageRepository;
 
@@ -47,13 +42,6 @@ public class Reto3Controller {
     @ResponseStatus(value = HttpStatus.CREATED)
     public void savePartyroom(@RequestBody Partyroom partyroom){
         partyroomRepository.save(partyroom);
-    }
-   
-    @RequestMapping("Client/save")
-    @PostMapping
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public void saveCLient(@RequestBody Client client){
-        clientRepository.save(client);
     }
    
     @RequestMapping("Message/save")
@@ -75,12 +63,6 @@ public class Reto3Controller {
     public ResponseEntity<List<Partyroom>> getPartyroom(){
         List<Partyroom> allPartyroom = partyroomRepository.findAll();
         return new ResponseEntity<List<Partyroom>>(allPartyroom,HttpStatus.OK);
-    }
-    @RequestMapping("Client/all")
-    @GetMapping
-    public ResponseEntity<List<Client>> getClient(){
-        List<Client> allClient = clientRepository.findAll();
-        return new ResponseEntity<List<Client>>(allClient,HttpStatus.OK);
     }
     @RequestMapping("Message/all")
     @GetMapping
