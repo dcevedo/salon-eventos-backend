@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ciclo3.saloneventos.Repositories.ICategoryRepository;
@@ -48,30 +49,35 @@ public class Reto3Controller {
 
     @RequestMapping("Category/save")
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     public void saveCategory(@RequestBody Category category){
         categoryRepository.save(category);
     }
    
     @RequestMapping("Partyroom/save")
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     public void savePartyroom(@RequestBody Partyroom partyroom){
         partyroomRepository.save(partyroom);
     }
    
     @RequestMapping("Client/save")
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     public void saveCLient(@RequestBody Client client){
         clientRepository.save(client);
     }
    
     @RequestMapping("Message/save")
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     public void saveMessage(@RequestBody Message message){
         messageRepository.save(message);
     }
 
     @RequestMapping("Reservation/save")
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     public void saveReservation(@RequestBody Reservation reservation){
         reservationRepository.save(reservation);
     }

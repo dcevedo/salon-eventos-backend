@@ -40,14 +40,14 @@ public class Partyroom {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "owner")
     private String owner;
 
     @Column(name = "capacity")
     private Integer capacity;
-
-    @Column(name = "name")
-    private String name;
 
     @Column(name = "description")
     private String description;
