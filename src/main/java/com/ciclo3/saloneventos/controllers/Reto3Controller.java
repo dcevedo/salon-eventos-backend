@@ -25,7 +25,7 @@ import com.ciclo3.saloneventos.entities.Partyroom;
 import com.ciclo3.saloneventos.entities.Reservation;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(path = "/api")
 public class Reto3Controller {
     
     @Autowired
@@ -78,9 +78,32 @@ public class Reto3Controller {
 
     @RequestMapping("Category/all")
     @GetMapping
-    public ResponseEntity<?> getCategories(){
-        List<Category> allCategories = new ArrayList<>();
-        allCategories = categoryRepository.findAll();
-        return new ResponseEntity<>(allCategories,HttpStatus.OK);
+    public ResponseEntity<List<Category>> getCategories(){
+        List<Category> allCategories = categoryRepository.findAll();
+        return new ResponseEntity<List<Category>>(allCategories,HttpStatus.OK);
+    }
+    @RequestMapping("Partyroom/all")
+    @GetMapping
+    public ResponseEntity<List<Partyroom>> getPartyroom(){
+        List<Partyroom> allPartyroom = partyroomRepository.findAll();
+        return new ResponseEntity<List<Partyroom>>(allPartyroom,HttpStatus.OK);
+    }
+    @RequestMapping("Client/all")
+    @GetMapping
+    public ResponseEntity<List<Client>> getClient(){
+        List<Client> allClient = clientRepository.findAll();
+        return new ResponseEntity<List<Client>>(allClient,HttpStatus.OK);
+    }
+    @RequestMapping("Message/all")
+    @GetMapping
+    public ResponseEntity<List<Message>> getMessage(){
+        List<Message> allMessage = messageRepository.findAll();
+        return new ResponseEntity<List<Message>>(allMessage,HttpStatus.OK);
+    }
+    @RequestMapping("Reservation/all")
+    @GetMapping
+    public ResponseEntity<List<Reservation>> getReservation(){
+        List<Reservation> allReservation = reservationRepository.findAll();
+        return new ResponseEntity<List<Reservation>>(allReservation,HttpStatus.OK);
     }
 }
