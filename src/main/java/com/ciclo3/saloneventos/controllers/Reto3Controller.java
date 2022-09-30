@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ciclo3.saloneventos.Repositories.IPartyroomRepository;
 import com.ciclo3.saloneventos.Repositories.IReservationRepository;
 import com.ciclo3.saloneventos.Repositories.IScoreRepository;
-import com.ciclo3.saloneventos.entities.Partyroom;
 import com.ciclo3.saloneventos.entities.Reservation;
 
 @RestController
@@ -23,21 +21,12 @@ import com.ciclo3.saloneventos.entities.Reservation;
 public class Reto3Controller {
     
     @Autowired
-    IPartyroomRepository partyroomRepository;
-
-    @Autowired
     IReservationRepository reservationRepository;
 
     @Autowired
     IScoreRepository scoreRepository;
 
    
-    @RequestMapping("Partyroom/save")
-    @PostMapping
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public void savePartyroom(@RequestBody Partyroom partyroom){
-        partyroomRepository.save(partyroom);
-    }
    
    
     @RequestMapping("Reservation/save")
@@ -47,12 +36,7 @@ public class Reto3Controller {
         reservationRepository.save(reservation);
     }
 
-    @RequestMapping("Partyroom/all")
-    @GetMapping
-    public ResponseEntity<List<Partyroom>> getPartyroom(){
-        List<Partyroom> allPartyroom = partyroomRepository.findAll();
-        return new ResponseEntity<List<Partyroom>>(allPartyroom,HttpStatus.OK);
-    }
+   
     
     @RequestMapping("Reservation/all")
     @GetMapping
