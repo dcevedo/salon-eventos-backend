@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ciclo3.saloneventos.Repositories.IMessageRepository;
 import com.ciclo3.saloneventos.Repositories.IPartyroomRepository;
 import com.ciclo3.saloneventos.Repositories.IReservationRepository;
 import com.ciclo3.saloneventos.Repositories.IScoreRepository;
-import com.ciclo3.saloneventos.entities.Message;
 import com.ciclo3.saloneventos.entities.Partyroom;
 import com.ciclo3.saloneventos.entities.Reservation;
 
@@ -24,9 +22,6 @@ import com.ciclo3.saloneventos.entities.Reservation;
 @RequestMapping(path = "/api")
 public class Reto3Controller {
     
-    @Autowired
-    IMessageRepository messageRepository;
-
     @Autowired
     IPartyroomRepository partyroomRepository;
 
@@ -44,13 +39,7 @@ public class Reto3Controller {
         partyroomRepository.save(partyroom);
     }
    
-    @RequestMapping("Message/save")
-    @PostMapping
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public void saveMessage(@RequestBody Message message){
-        messageRepository.save(message);
-    }
-
+   
     @RequestMapping("Reservation/save")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
@@ -64,12 +53,7 @@ public class Reto3Controller {
         List<Partyroom> allPartyroom = partyroomRepository.findAll();
         return new ResponseEntity<List<Partyroom>>(allPartyroom,HttpStatus.OK);
     }
-    @RequestMapping("Message/all")
-    @GetMapping
-    public ResponseEntity<List<Message>> getMessage(){
-        List<Message> allMessage = messageRepository.findAll();
-        return new ResponseEntity<List<Message>>(allMessage,HttpStatus.OK);
-    }
+    
     @RequestMapping("Reservation/all")
     @GetMapping
     public ResponseEntity<List<Reservation>> getReservation(){
