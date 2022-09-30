@@ -49,7 +49,7 @@ public class Client {
     @OneToMany(mappedBy = "client",
                 cascade = {CascadeType.PERSIST},
                 orphanRemoval = true)
-    @JsonIgnoreProperties("client")
+    @JsonIgnoreProperties({"client","partyroom"})
     private Set<Reservation> reservations;
     
     

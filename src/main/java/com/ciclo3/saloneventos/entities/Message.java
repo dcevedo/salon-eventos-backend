@@ -39,7 +39,7 @@ public class Message {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
-    @JsonIgnoreProperties(value = {"reservations","hibernateLazyInitializer","messages","message"})
+    @JsonIgnoreProperties(value = {"hibernateLazyInitializer","messages","message"})
     private Client client;
     
     public Message(String messageText) {
