@@ -3,9 +3,10 @@ package com.ciclo3.saloneventos.Repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ciclo3.saloneventos.entities.Reservation;
+import com.ciclo3.saloneventos.entities.Partyroom;
+
 
 @Repository
-public interface IReservationRepository extends JpaRepository<Reservation,Long>{
+public interface PartyroomRepository extends JpaRepository<Partyroom,Long>{
     
 }

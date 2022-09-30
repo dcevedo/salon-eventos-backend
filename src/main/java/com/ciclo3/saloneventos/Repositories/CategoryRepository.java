@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ciclo3.saloneventos.entities.Category;
 
 @Repository
-public interface ICategoryRepository extends JpaRepository<Category,Long>{
+public interface CategoryRepository extends JpaRepository<Category,Long>{
     
 }

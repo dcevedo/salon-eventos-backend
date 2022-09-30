@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.ciclo3.saloneventos.Repositories.ICategoryRepository;
+import com.ciclo3.saloneventos.Repositories.CategoryRepository;
 import com.ciclo3.saloneventos.entities.Category;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    ICategoryRepository categoryRepository;
+    CategoryRepository categoryRepository;
 
-    public CategoryServiceImpl(ICategoryRepository categoryRepository){
+    public CategoryServiceImpl(CategoryRepository categoryRepository){
         this.categoryRepository = categoryRepository;
     }
     

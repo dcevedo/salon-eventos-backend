@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ciclo3.saloneventos.entities.Client;
 
 @Repository
-public interface IClientRepository extends JpaRepository<Client,Long>{
+public interface ClientRepository extends JpaRepository<Client,Long>{
     
 }

@@ -2,14 +2,17 @@ package com.ciclo3.saloneventos.services;
 
 import java.util.List;
 
-import com.ciclo3.saloneventos.Repositories.IScoreRepository;
+import org.springframework.stereotype.Service;
+
+import com.ciclo3.saloneventos.Repositories.ScoreRepository;
 import com.ciclo3.saloneventos.entities.Score;
 
+@Service
 public class ScoreServiceImpl implements ScoreService{
 
-    IScoreRepository scoreRepository;
+    ScoreRepository scoreRepository;
 
-    public ScoreServiceImpl(IScoreRepository scoreRepository) {
+    public ScoreServiceImpl(ScoreRepository scoreRepository) {
         this.scoreRepository = scoreRepository;
     }
 

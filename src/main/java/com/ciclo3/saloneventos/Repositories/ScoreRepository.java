@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ciclo3.saloneventos.entities.Score;
 
 @Repository
-public interface IScoreRepository extends JpaRepository<Score,Long>{
+public interface ScoreRepository extends JpaRepository<Score,Long>{
     
 }

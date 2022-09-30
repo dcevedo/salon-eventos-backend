@@ -2,15 +2,18 @@ package com.ciclo3.saloneventos.services;
 
 import java.util.List;
 
-import com.ciclo3.saloneventos.Repositories.IClientRepository;
+import org.springframework.stereotype.Service;
+
+import com.ciclo3.saloneventos.Repositories.ClientRepository;
 import com.ciclo3.saloneventos.entities.Client;
 
+@Service
 public class ClientServiceImpl implements ClientService {
 
-    IClientRepository clientRepository;
+    ClientRepository clientRepository;
 
     
-    public ClientServiceImpl(IClientRepository clientRepository) {
+    public ClientServiceImpl(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
 

@@ -2,15 +2,18 @@ package com.ciclo3.saloneventos.services;
 
 import java.util.List;
 
-import com.ciclo3.saloneventos.Repositories.IPartyroomRepository;
+import org.springframework.stereotype.Service;
+
+import com.ciclo3.saloneventos.Repositories.PartyroomRepository;
 import com.ciclo3.saloneventos.entities.Partyroom;
 
+@Service
 public class PartyroomServiceImpl implements PartyroomService{
 
-    IPartyroomRepository partyroomRepository;
+    PartyroomRepository partyroomRepository;
 
     
-    public PartyroomServiceImpl(IPartyroomRepository partyroomRepository) {
+    public PartyroomServiceImpl(PartyroomRepository partyroomRepository) {
         this.partyroomRepository = partyroomRepository;
     }
 

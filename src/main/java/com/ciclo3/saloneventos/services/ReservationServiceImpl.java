@@ -2,14 +2,17 @@ package com.ciclo3.saloneventos.services;
 
 import java.util.List;
 
-import com.ciclo3.saloneventos.Repositories.IReservationRepository;
+import org.springframework.stereotype.Service;
+
+import com.ciclo3.saloneventos.Repositories.ReservationRepository;
 import com.ciclo3.saloneventos.entities.Reservation;
 
+@Service
 public class ReservationServiceImpl implements ReservationService {
 
-    IReservationRepository reservationRepository;
+    ReservationRepository reservationRepository;
 
-    public ReservationServiceImpl(IReservationRepository reservationRepository) {
+    public ReservationServiceImpl(ReservationRepository reservationRepository) {
         this.reservationRepository = reservationRepository;
     }
 

@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.ciclo3.saloneventos.Repositories.IMessageRepository;
+import com.ciclo3.saloneventos.Repositories.MessageRepository;
 import com.ciclo3.saloneventos.entities.Message;
 
 @Service
 public class MessageServiceImpl implements MessageService{
 
-    IMessageRepository messageRepository;
+    MessageRepository messageRepository;
 
-    public MessageServiceImpl(IMessageRepository messageRepository) {
+    public MessageServiceImpl(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
     }
 
