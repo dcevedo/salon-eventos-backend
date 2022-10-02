@@ -1,16 +1,21 @@
 package com.ciclo3.saloneventos.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
+@Getter @Setter
 @ToString
-public class categoryDto {
+public class CategoryIdDTO {
     private Long id;
     private String name;
-    private String description;
 
-    public categoryDto(Long id, String name, String description) {
+    
+    public CategoryIdDTO(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.description = description;
     }
+
+
+    public CategoryIdDTO(){}
 }

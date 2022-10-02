@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ciclo3.saloneventos.dto.ReservationBasicDTO;
 import com.ciclo3.saloneventos.entities.Reservation;
 import com.ciclo3.saloneventos.services.ReservationService;
 
@@ -24,19 +25,19 @@ public class TestController {
 
     @GetMapping
     @RequestMapping("{id}")
-    public ResponseEntity<ReservationDTO> test(@PathVariable Long id){
-        ReservationDTO reservationDTO = convertToDTO(reservationService.getById(id));
-        return new ResponseEntity<ReservationDTO>(reservationDTO,HttpStatus.OK);
+    public ResponseEntity<ReservationBasicDTO> test(@PathVariable Long id){
+        ReservationBasicDTO reservationDTO = convertToDTO(reservationService.getById(id));
+        return new ResponseEntity<ReservationBasicDTO>(reservationDTO,HttpStatus.OK);
     }
     
 
 
-    private ReservationDTO convertToDTO(Reservation reservation){
-        ReservationDTO reservationDTO = modelMapper.map(reservation, ReservationDTO.class);
+    private ReservationBasicDTO convertToDTO(Reservation reservation){
+        ReservationBasicDTO reservationDTO = modelMapper.map(reservation, ReservationBasicDTO.class);
         return reservationDTO; 
     }
 
-    private Reservation convertToEntity(ReservationDTO reservationDTO){
+    private Reservation convertToEntity(ReservationBasicDTO reservationDTO){
         Reservation reservation = modelMapper.map(reservationDTO, Reservation.class);
         return reservation;
     }
