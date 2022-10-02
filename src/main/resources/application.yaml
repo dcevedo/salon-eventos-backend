@@ -14,6 +14,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  data: 
+    jdbc:
+      repositories:
+        enabled: false
 --- 
 spring:
   config:
