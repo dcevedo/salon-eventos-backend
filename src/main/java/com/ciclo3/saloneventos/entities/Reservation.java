@@ -65,16 +65,32 @@ public class Reservation {
 
 
     public Reservation(){}
-
-    public Reservation(Date startDate, Date devolutionDate) {
+    
+    public Reservation(Date startDate, Date devolutionDate, String status, Partyroom partyroom, Client client,
+            Score score) {
         this.startDate = startDate;
         this.devolutionDate = devolutionDate;
-    }
-
-    public Reservation(Client client, Partyroom partyroom, Date startDate, Date devolutionDate) {
-        this.client = client;
+        this.status = status;
         this.partyroom = partyroom;
+        this.client = client;
+        this.score = score;
+    }
+
+
+    public Reservation(Date startDate, Date devolutionDate, String status, Score score) {
         this.startDate = startDate;
         this.devolutionDate = devolutionDate;
+        this.status = status;
+        this.score = score;
     }
+
+
+    public Reservation(Long idReservation, Date startDate, Date devolutionDate, String status) {
+        this.idReservation = idReservation;
+        this.startDate = startDate;
+        this.devolutionDate = devolutionDate;
+        this.status = status;
+    }
+
+
 }

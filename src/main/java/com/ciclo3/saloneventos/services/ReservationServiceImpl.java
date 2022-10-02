@@ -29,5 +29,12 @@ public class ReservationServiceImpl implements ReservationService {
             .orElseThrow(() -> new RuntimeException("error"));
         return postReservation;
     }
+
+    @Override
+    public Reservation getById(Long id) {
+        Reservation reservation = reservationRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        return reservation;
+    }
     
 }

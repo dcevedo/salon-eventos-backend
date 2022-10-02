@@ -1,5 +1,6 @@
 package com.ciclo3.saloneventos;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,11 @@ public class SaloneventosApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SaloneventosApplication.class, args);
+	}
+
+	@Bean
+	public ModelMapper modelMapper(){
+		return new ModelMapper();
 	}
 
 	//allow cors
