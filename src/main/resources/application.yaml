@@ -13,7 +13,7 @@ spring:
       enabled: always
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
   data: 
     jdbc:
       repositories:
