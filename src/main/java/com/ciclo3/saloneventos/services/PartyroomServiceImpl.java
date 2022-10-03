@@ -30,5 +30,32 @@ public class PartyroomServiceImpl implements PartyroomService{
             .orElseThrow(() -> new RuntimeException("error"));
         return postPartyroom;
     }
+
+    @Override
+    public Partyroom getById(Long id) {
+        Partyroom partyroom = partyroomRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        return partyroom;
+    }
+
+    @Override
+    public Partyroom update(Long id, Partyroom partyroom) {
+        Partyroom updatedPartyroom = partyroomRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        updatedPartyroom.setCapacity(partyroom.getCapacity());
+        updatedPartyroom.setDescription(partyroom.getDescription());
+        updatedPartyroom.setName(partyroom.getName());
+        updatedPartyroom.setOwner(partyroom.getOwner());
+        updatedPartyroom.setCategory(partyroom.getCategory());
+        partyroomRepository.save(updatedPartyroom);
+        return updatedPartyroom;
+    }
+
+    @Override
+    public void delete(Long id) {
+        Partyroom partyroom = partyroomRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        partyroomRepository.delete(partyroom);
+    }
     
 }

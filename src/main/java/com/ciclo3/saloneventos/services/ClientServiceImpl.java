@@ -30,5 +30,31 @@ public class ClientServiceImpl implements ClientService {
             .orElseThrow(() -> new RuntimeException("error"));
         return postClient;
     }
+
+    @Override
+    public Client getById(Long id) {
+        Client client = clientRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));    
+        return client;
+    }
+
+    @Override
+    public Client update(Long id, Client client) {
+        Client updateClient = clientRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        updateClient.setAge(client.getAge());
+        updateClient.setEmail(client.getEmail());
+        updateClient.setName(client.getName());
+        updateClient.setPassword(client.getPassword());
+        clientRepository.save(updateClient);
+        return null;
+    }
+
+    @Override
+    public void delete(Long id) {
+        Client client = clientRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        clientRepository.delete(client);        
+    }
     
 }

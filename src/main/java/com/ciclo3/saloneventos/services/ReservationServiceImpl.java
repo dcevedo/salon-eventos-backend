@@ -36,5 +36,27 @@ public class ReservationServiceImpl implements ReservationService {
             .orElseThrow(() -> new RuntimeException("error"));
         return reservation;
     }
+
+    @Override
+    public Reservation update(Long id, Reservation reservation) {
+        Reservation updatedReservation = reservationRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        updatedReservation.setStartDate(reservation.getStartDate());
+        updatedReservation.setDevolutionDate(reservation.getDevolutionDate());
+        updatedReservation.setStatus(reservation.getStatus());
+        updatedReservation.setClient(reservation.getClient());
+        updatedReservation.setPartyroom(reservation.getPartyroom());
+        updatedReservation.setScore(reservation.getScore());
+        reservationRepository.save(updatedReservation);
+        return null;
+    }
+
+    @Override
+    public void delete(Long id) {
+        Reservation reservation = reservationRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        reservationRepository.delete(reservation);
+
+    }
     
 }

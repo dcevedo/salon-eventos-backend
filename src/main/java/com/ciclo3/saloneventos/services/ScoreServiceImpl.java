@@ -29,5 +29,12 @@ public class ScoreServiceImpl implements ScoreService{
             .orElseThrow(() -> new RuntimeException());
         return postScore;
     }
+
+    @Override
+    public Score getById(Long id) {
+        Score score =  scoreRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        return score;
+    }
     
 }

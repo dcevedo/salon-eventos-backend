@@ -30,4 +30,29 @@ public class MessageServiceImpl implements MessageService{
         return postMessage;
     }
 
+    @Override
+    public Message getById(Long id) {
+        Message message = messageRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        return message;
+    }
+
+    @Override
+    public Message update(Long id, Message message) {
+        Message updateMessage = messageRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        updateMessage.setMessageText(message.getMessageText());
+        updateMessage.setClient(message.getClient());
+        updateMessage.setPartyroom(message.getPartyroom());
+        messageRepository.save(updateMessage);
+        return updateMessage;
+    }
+
+    @Override
+    public void delete(Long id) {
+        Message message = messageRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        messageRepository.delete(message);
+    }
+
 }

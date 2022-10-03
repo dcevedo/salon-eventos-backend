@@ -9,4 +9,10 @@ public interface ClientService {
     List<Client> getAll();
 
     Client save(Client client);
+
+    Client getById(Long id);
+
+    Client update(Long id, Client client);
+
+    void delete(Long id);
 }

@@ -8,5 +8,11 @@ public interface PartyroomService {
     
     List<Partyroom> getAll();
 
+    Partyroom getById(Long id);
+
     Partyroom save(Partyroom partyroom);
+
+    Partyroom update(Long id, Partyroom partyroom);
+
+    void delete(Long id);
 }

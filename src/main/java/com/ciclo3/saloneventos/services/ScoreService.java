@@ -9,4 +9,7 @@ public interface ScoreService {
     List<Score> getAll();
 
     Score save(Score score);
+
+    Score getById(Long id);
+
 }

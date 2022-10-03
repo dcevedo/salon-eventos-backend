@@ -29,5 +29,29 @@ public class CategoryServiceImpl implements CategoryService {
             .orElseThrow(() -> new RuntimeException("error"));
         return findedCategory;
     }
+
+    @Override
+    public Category getById(Long id) {
+        Category category = categoryRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        return category;
+    }
+
+    @Override
+    public Category update(Long id, Category category) {
+        Category updatedCategory = categoryRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        updatedCategory.setName(category.getName());
+        updatedCategory.setDescription(category.getDescription());
+        categoryRepository.save(updatedCategory);
+        return updatedCategory;
+    }
+
+    @Override
+    public void delete(Long id) {
+        Category category = categoryRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("error"));
+        categoryRepository.delete(category);
+    }
     
 }

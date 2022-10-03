@@ -10,4 +10,10 @@ public interface MessageService {
 
     Message save(Message message);
 
+    Message getById(Long id);
+
+    Message update(Long id, Message message);
+
+    void delete(Long id);
+
 }

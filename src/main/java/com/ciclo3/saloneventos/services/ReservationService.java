@@ -11,4 +11,8 @@ public interface ReservationService {
     Reservation save(Reservation reservation);
 
     Reservation getById(Long id);
+
+    Reservation update(Long id, Reservation reservation);
+
+    void delete(Long id);
 }
