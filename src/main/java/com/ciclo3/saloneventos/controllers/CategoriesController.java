@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ciclo3.saloneventos.dto.CategoryBasicDTO;
-import com.ciclo3.saloneventos.dto.CategoryBasicDTO;
 import com.ciclo3.saloneventos.entities.Category;
 import com.ciclo3.saloneventos.services.CategoryService;
 
