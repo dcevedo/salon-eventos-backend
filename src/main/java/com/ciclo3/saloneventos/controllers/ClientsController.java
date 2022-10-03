@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,12 @@ public class ClientsController {
             .map(this::convertToDTO)
             .collect(Collectors.toList());
         return new ResponseEntity<List<ClientBasicDTO>>(allClient,HttpStatus.OK);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<ClientBasicDTO> getClient(@PathVariable Long id){
+        ClientBasicDTO clientBasicDTO = convertToDTO(clientService.getById(id));
+        return new ResponseEntity<ClientBasicDTO>(clientBasicDTO, HttpStatus.OK);
     }
 
     @PostMapping

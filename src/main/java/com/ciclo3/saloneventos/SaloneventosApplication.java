@@ -26,7 +26,7 @@ public class SaloneventosApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-					.allowedOrigins("http://localhost:8080")
+					.allowedOrigins("http://localhost:8080","http://localhost:4200")
 					.allowedMethods("*")
 					.allowedHeaders("*");
 			}
