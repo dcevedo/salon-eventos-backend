@@ -48,7 +48,7 @@ public class ReservationServiceImpl implements ReservationService {
         updatedReservation.setPartyroom(reservation.getPartyroom());
         updatedReservation.setScore(reservation.getScore());
         reservationRepository.save(updatedReservation);
-        return null;
+        return updatedReservation;
     }
 
     @Override
