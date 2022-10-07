@@ -10,11 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ciclo3.saloneventos.dto.ClientBasicDTO;
+import com.ciclo3.saloneventos.dto.ClientPasswordDTO;
 import com.ciclo3.saloneventos.entities.Client;
 import com.ciclo3.saloneventos.services.ClientService;
 
@@ -47,9 +49,15 @@ public class ClientsController {
     }
 
     @PostMapping
-    public ResponseEntity<Client> saveCLient(@RequestBody Client client){
-        Client postClient = clientService.save(client);
-        return new ResponseEntity<Client>(postClient, HttpStatus.CREATED);
+    public ResponseEntity<ClientBasicDTO> saveCLient(@RequestBody ClientPasswordDTO clientPasswordDTO){
+        ClientBasicDTO postClient = convertToDTO(clientService.save(convertToEntity(clientPasswordDTO)));
+        return new ResponseEntity<ClientBasicDTO>(postClient, HttpStatus.CREATED);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<ClientBasicDTO> updateClient(@PathVariable Long id, @RequestBody ClientBasicDTO clientBasicDTO){
+        ClientBasicDTO updatedClient = convertToDTO(clientService.update(id, convertToEntity(clientBasicDTO)));
+        return new ResponseEntity<ClientBasicDTO>(updatedClient,HttpStatus.OK);
     }
 
     private ClientBasicDTO convertToDTO(Client client){
@@ -57,8 +65,14 @@ public class ClientsController {
         return clientBasicDTO;
     }
 
-    // private Client convertToEntity(ClientBasicDTO clientBasicDTO){
-    //     Client client = modelMapper.map(clientBasicDTO, Client.class);
-    //     return client;
-    // }
+    private Client convertToEntity(ClientBasicDTO clientBasicDTO){
+        Client client = modelMapper.map(clientBasicDTO, Client.class);
+        return client;
+    }
+
+    private Client convertToEntity(ClientPasswordDTO clientPasswordDTO){
+        Client client = modelMapper.map(clientPasswordDTO, Client.class);
+        return client;
+    }
+
 }

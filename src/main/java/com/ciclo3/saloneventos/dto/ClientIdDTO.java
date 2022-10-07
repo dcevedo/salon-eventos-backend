@@ -8,12 +8,12 @@ import lombok.ToString;
 @ToString
 public class ClientIdDTO {
     
-    private Long idCLient;
+    private Long idClient;
 
     private String name;
 
-    public ClientIdDTO(Long idCLient, String name) {
-        this.idCLient = idCLient;
+    public ClientIdDTO(Long idClient, String name) {
+        this.idClient = idClient;
         this.name = name;
     }
 

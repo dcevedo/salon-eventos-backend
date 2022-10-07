@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +37,12 @@ public class ScoresController {
             .map(this::convertToDTO)
             .collect(Collectors.toList());
         return new ResponseEntity<List<ScoreBasicDTO>>(scores,HttpStatus.OK);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<ScoreBasicDTO> getScore(@PathVariable Long id){
+        ScoreBasicDTO score = convertToDTO(scoreService.getById(id));
+        return new ResponseEntity<ScoreBasicDTO>(score, HttpStatus.OK);
     }
 
     @PostMapping
