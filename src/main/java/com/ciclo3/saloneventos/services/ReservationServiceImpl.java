@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.ciclo3.saloneventos.Repositories.ReservationRepository;
 import com.ciclo3.saloneventos.entities.Reservation;
+import com.ciclo3.saloneventos.exceptions.EntityNotFoundException;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -26,21 +27,21 @@ public class ReservationServiceImpl implements ReservationService {
     public Reservation save(Reservation reservation) {        
         reservationRepository.save(reservation);
         Reservation postReservation = reservationRepository.findById(reservation.getIdReservation())
-            .orElseThrow(() -> new RuntimeException("error"));
+            .orElseThrow(() -> new EntityNotFoundException(Reservation.class));
         return postReservation;
     }
 
     @Override
     public Reservation getById(Long id) {
         Reservation reservation = reservationRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("error"));
+            .orElseThrow(() -> new EntityNotFoundException(Reservation.class,id));
         return reservation;
     }
 
     @Override
     public Reservation update(Long id, Reservation reservation) {
         Reservation updatedReservation = reservationRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("error"));
+            .orElseThrow(() -> new EntityNotFoundException(Reservation.class,id));
         updatedReservation.setStartDate(reservation.getStartDate());
         updatedReservation.setDevolutionDate(reservation.getDevolutionDate());
         updatedReservation.setStatus(reservation.getStatus());
@@ -54,7 +55,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void delete(Long id) {
         Reservation reservation = reservationRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("error"));
+            .orElseThrow(() -> new EntityNotFoundException(Reservation.class,id));
         reservationRepository.delete(reservation);
 
     }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.ciclo3.saloneventos.Repositories.PartyroomRepository;
 import com.ciclo3.saloneventos.entities.Partyroom;
+import com.ciclo3.saloneventos.exceptions.EntityNotFoundException;
 
 @Service
 public class PartyroomServiceImpl implements PartyroomService{
@@ -27,21 +28,21 @@ public class PartyroomServiceImpl implements PartyroomService{
     public Partyroom save(Partyroom partyroom) {
         partyroomRepository.save(partyroom);
         Partyroom postPartyroom = partyroomRepository.findById(partyroom.getId())
-            .orElseThrow(() -> new RuntimeException("error"));
+            .orElseThrow(() -> new EntityNotFoundException(Partyroom.class));
         return postPartyroom;
     }
 
     @Override
     public Partyroom getById(Long id) {
         Partyroom partyroom = partyroomRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("error"));
+            .orElseThrow(() -> new EntityNotFoundException(Partyroom.class,id));
         return partyroom;
     }
 
     @Override
     public Partyroom update(Long id, Partyroom partyroom) {
         Partyroom updatedPartyroom = partyroomRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("error"));
+            .orElseThrow(() -> new EntityNotFoundException(Partyroom.class,id));
         updatedPartyroom.setCapacity(partyroom.getCapacity());
         updatedPartyroom.setDescription(partyroom.getDescription());
         updatedPartyroom.setName(partyroom.getName());
@@ -54,7 +55,7 @@ public class PartyroomServiceImpl implements PartyroomService{
     @Override
     public void delete(Long id) {
         Partyroom partyroom = partyroomRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("error"));
+            .orElseThrow(() -> new EntityNotFoundException(Partyroom.class,id));
         partyroomRepository.delete(partyroom);
     }
     

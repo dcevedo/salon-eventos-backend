@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.ciclo3.saloneventos.Repositories.ScoreRepository;
 import com.ciclo3.saloneventos.entities.Score;
+import com.ciclo3.saloneventos.exceptions.EntityNotFoundException;
 
 @Service
 public class ScoreServiceImpl implements ScoreService{
@@ -26,14 +27,14 @@ public class ScoreServiceImpl implements ScoreService{
     public Score save(Score score) {
         scoreRepository.save(score);
         Score postScore = scoreRepository.findById(score.getIdScore())
-            .orElseThrow(() -> new RuntimeException());
+            .orElseThrow(() -> new EntityNotFoundException(Score.class));
         return postScore;
     }
 
     @Override
     public Score getById(Long id) {
         Score score =  scoreRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("error"));
+            .orElseThrow(() -> new EntityNotFoundException(Score.class,id));
         return score;
     }
     
