@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import com.ciclo3.saloneventos.Repositories.ClientRepository;
 import com.ciclo3.saloneventos.entities.Client;
+import com.ciclo3.saloneventos.exceptions.EntityMalformedException;
 import com.ciclo3.saloneventos.exceptions.EntityNotFoundException;
+import com.ciclo3.saloneventos.utils.Utility;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -26,10 +28,22 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client save(Client client) {
+        this.verificateEntity(client);
         clientRepository.save(client);
         Client postClient = clientRepository.findById(client.getIdClient())
             .orElseThrow(() -> new EntityNotFoundException(Client.class));
         return postClient;
+    }
+
+    private void verificateEntity(Client client) {
+
+        if(!Utility.onlyLettersMatches(client.getName())){
+            throw new EntityMalformedException("the name must contain only letters");
+        }
+
+        if(!Utility.emailPatternMatches(client.getEmail())){
+            throw new EntityMalformedException("email is malformed");
+        }
     }
 
     @Override
