@@ -39,8 +39,9 @@ public class CategoryController {
     }
 
     @PutMapping("update")
-    public void updateCategory(@RequestBody Category category){
-        categoryService.update(category); 
+    public ResponseEntity<HttpStatus> updateCategory(@RequestBody Category category){
+        categoryService.update(category);
+        return new ResponseEntity<>(HttpStatus.CREATED); 
     }
 
     @DeleteMapping("{id}")
