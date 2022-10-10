@@ -60,7 +60,7 @@ public class PartyroomServiceImpl implements PartyroomService{
         Optional.ofNullable(partyroom.getCapacity()).ifPresent(updatedPartyroom::setCapacity);
         Optional.ofNullable(partyroom.getDescription()).ifPresent(updatedPartyroom::setDescription);
         Optional.ofNullable(partyroom.getName()).ifPresent(updatedPartyroom::setName);
-        Optional.ofNullable(partyroom.getOwner()).ifPresent(updatedPartyroom::setName);
+        Optional.ofNullable(partyroom.getOwner()).ifPresent(updatedPartyroom::setOwner);
         Optional.ofNullable(partyroom.getCategory()).ifPresent(updatedPartyroom::setCategory);
         partyroomRepository.save(updatedPartyroom);
     }
