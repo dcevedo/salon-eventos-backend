@@ -39,13 +39,15 @@ public class ClientController {
     }
 
     @PutMapping("update")
-    public void updateClient(@RequestBody Client client){
+    public ResponseEntity<HttpStatus> updateClient(@RequestBody Client client){
         clientService.update(client);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")
-    public void deleteClient(@PathVariable Long id){
+    public ResponseEntity<HttpStatus> deleteClient(@PathVariable Long id){
         clientService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     
 }

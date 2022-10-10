@@ -38,13 +38,15 @@ public class PartyroomController {
     }
 
     @PutMapping("update")
-    public void updatePartyroom(@RequestBody Partyroom partyroom){
+    public ResponseEntity<HttpStatus> updatePartyroom(@RequestBody Partyroom partyroom){
         partyroomService.update(partyroom);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")
-    public void deletePartyroom(@PathVariable Long id){
+    public ResponseEntity<HttpStatus> deletePartyroom(@PathVariable Long id){
         partyroomService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     
