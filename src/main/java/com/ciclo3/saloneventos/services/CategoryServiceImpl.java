@@ -27,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category create(Category category) {
-        verificateEntity(category);
+        // verificateEntity(category);
         categoryRepository.save(category);
         Category findedCategory = categoryRepository.findById(category.getId())
             .orElseThrow(() -> new EntityNotFoundException(Category.class));
@@ -51,6 +51,17 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepository.save(updatedCategory);
         return updatedCategory;
     }
+
+    @Override
+    public Category update(Category category) {
+        Category updatedCategory = categoryRepository.findById(category.getId())
+            .orElseThrow(() -> new EntityNotFoundException(Category.class));
+        updatedCategory.setName(category.getName());
+        updatedCategory.setDescription(category.getDescription());
+        categoryRepository.save(updatedCategory);
+        return updatedCategory;
+    }
+
 
     @Override
     public void delete(Long id) {

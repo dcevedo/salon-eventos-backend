@@ -13,6 +13,8 @@ public interface PartyroomService {
     Partyroom save(Partyroom partyroom);
 
     Partyroom update(Long id, Partyroom partyroom);
+    void update(Partyroom partyroom);
 
     void delete(Long id);
+
 }

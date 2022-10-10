@@ -62,7 +62,18 @@ public class ClientServiceImpl implements ClientService {
         updateClient.setName(client.getName());
         updateClient.setPassword(client.getPassword());
         clientRepository.save(updateClient);
-        return null;
+        return updateClient;
+    }
+
+    @Override
+    public void update(Client client) {
+        Client updateClient = clientRepository.findById(client.getIdClient())
+            .orElseThrow(() -> new EntityNotFoundException(Client.class));
+        updateClient.setAge(client.getAge());
+        updateClient.setEmail(client.getEmail());
+        updateClient.setName(client.getName());
+        updateClient.setPassword(client.getPassword());
+        clientRepository.save(updateClient);
     }
 
     @Override

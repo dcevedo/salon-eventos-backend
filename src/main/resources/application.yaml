@@ -11,9 +11,9 @@ spring:
   output:
     ansi:
       enabled: always
-  sql:
-    init:
-      mode: always
+  # sql:
+  #   init:
+  #     mode: always
   jpa:
     hibernate:
       ddl-auto: create
