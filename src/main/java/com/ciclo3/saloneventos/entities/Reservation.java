@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
+import com.ciclo3.saloneventos.utils.Status;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
@@ -41,7 +42,7 @@ public class Reservation {
     private Date devolutionDate;
 
     @Column(name = "status")
-    private String status = "created";
+    private String status = Status.PROGRAMMED.toString();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
