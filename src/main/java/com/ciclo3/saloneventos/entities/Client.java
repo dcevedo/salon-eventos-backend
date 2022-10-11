@@ -38,7 +38,7 @@ public class Client {
     private String name;
         
     @Column(name = "age")
-    private int age;
+    private Integer age;
     
     @OneToMany(mappedBy = "client",
                 cascade = {CascadeType.PERSIST},
