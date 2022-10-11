@@ -44,11 +44,11 @@ public class PartyroomServiceImpl implements PartyroomService{
     public Partyroom update(Long id, Partyroom partyroom) {
         Partyroom updatedPartyroom = partyroomRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException(Partyroom.class,id));
-        updatedPartyroom.setCapacity(partyroom.getCapacity());
-        updatedPartyroom.setDescription(partyroom.getDescription());
-        updatedPartyroom.setName(partyroom.getName());
-        updatedPartyroom.setOwner(partyroom.getOwner());
-        updatedPartyroom.setCategory(partyroom.getCategory());
+        Optional.ofNullable(partyroom.getCapacity()).ifPresent(updatedPartyroom::setCapacity);
+        Optional.ofNullable(partyroom.getDescription()).ifPresent(updatedPartyroom::setDescription);
+        Optional.ofNullable(partyroom.getName()).ifPresent(updatedPartyroom::setName);
+        Optional.ofNullable(partyroom.getOwner()).ifPresent(updatedPartyroom::setOwner);
+        Optional.ofNullable(partyroom.getCategory()).ifPresent(updatedPartyroom::setCategory);
         partyroomRepository.save(updatedPartyroom);
         return updatedPartyroom;
     }

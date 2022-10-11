@@ -1,6 +1,7 @@
 package com.ciclo3.saloneventos.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -57,10 +58,10 @@ public class ClientServiceImpl implements ClientService {
     public Client update(Long id, Client client) {
         Client updateClient = clientRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException(Client.class,id));
-        updateClient.setAge(client.getAge());
-        updateClient.setEmail(client.getEmail());
-        updateClient.setName(client.getName());
-        updateClient.setPassword(client.getPassword());
+        Optional.ofNullable(client.getAge()).ifPresent(updateClient::setAge);
+        Optional.ofNullable(client.getEmail()).ifPresent(updateClient::setEmail);
+        Optional.ofNullable(client.getName()).ifPresent(updateClient::setName);
+        Optional.ofNullable(client.getPassword()).ifPresent(updateClient::setPassword);
         clientRepository.save(updateClient);
         return updateClient;
     }
@@ -69,10 +70,10 @@ public class ClientServiceImpl implements ClientService {
     public void update(Client client) {
         Client updateClient = clientRepository.findById(client.getIdClient())
             .orElseThrow(() -> new EntityNotFoundException(Client.class));
-        updateClient.setAge(client.getAge());
-        updateClient.setEmail(client.getEmail());
-        updateClient.setName(client.getName());
-        updateClient.setPassword(client.getPassword());
+        Optional.ofNullable(client.getAge()).ifPresent(updateClient::setAge);
+        Optional.ofNullable(client.getEmail()).ifPresent(updateClient::setEmail);
+        Optional.ofNullable(client.getName()).ifPresent(updateClient::setName);
+        Optional.ofNullable(client.getPassword()).ifPresent(updateClient::setPassword);
         clientRepository.save(updateClient);
     }
 

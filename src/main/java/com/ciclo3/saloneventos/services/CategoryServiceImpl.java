@@ -1,6 +1,7 @@
 package com.ciclo3.saloneventos.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -46,8 +47,8 @@ public class CategoryServiceImpl implements CategoryService {
         verificateEntity(category);
         Category updatedCategory = categoryRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException(Category.class,id));
-        updatedCategory.setName(category.getName());
-        updatedCategory.setDescription(category.getDescription());
+        Optional.ofNullable(category.getName()).ifPresent(updatedCategory::setName);
+        Optional.ofNullable(category.getDescription()).ifPresent(updatedCategory::setDescription);
         categoryRepository.save(updatedCategory);
         return updatedCategory;
     }
@@ -56,8 +57,8 @@ public class CategoryServiceImpl implements CategoryService {
     public Category update(Category category) {
         Category updatedCategory = categoryRepository.findById(category.getId())
             .orElseThrow(() -> new EntityNotFoundException(Category.class));
-        updatedCategory.setName(category.getName());
-        updatedCategory.setDescription(category.getDescription());
+        Optional.ofNullable(category.getName()).ifPresent(updatedCategory::setName);
+        Optional.ofNullable(category.getDescription()).ifPresent(updatedCategory::setDescription);
         categoryRepository.save(updatedCategory);
         return updatedCategory;
     }

@@ -1,6 +1,7 @@
 package com.ciclo3.saloneventos.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -42,9 +43,9 @@ public class MessageServiceImpl implements MessageService{
     public Message update(Long id, Message message) {
         Message updateMessage = messageRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException(Message.class,id));
-        updateMessage.setMessageText(message.getMessageText());
-        updateMessage.setClient(message.getClient());
-        updateMessage.setPartyroom(message.getPartyroom());
+        Optional.ofNullable(message.getMessageText()).ifPresent(updateMessage::setMessageText);
+        Optional.ofNullable(message.getClient()).ifPresent(updateMessage::setClient);
+        Optional.ofNullable(message.getPartyroom()).ifPresent(updateMessage::setPartyroom);
         messageRepository.save(updateMessage);
         return updateMessage;
     }
