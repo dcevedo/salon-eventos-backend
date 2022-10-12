@@ -1,14 +1,18 @@
 package com.ciclo3.saloneventos.services;
 
 import java.util.Date;
+// import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.ciclo3.saloneventos.Repositories.ReservationRepository;
+import com.ciclo3.saloneventos.dto.ReservationTotalWithClientDTO;
 import com.ciclo3.saloneventos.entities.Reservation;
 import com.ciclo3.saloneventos.exceptions.EntityNotFoundException;
+import com.ciclo3.saloneventos.utils.Status;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -67,6 +71,21 @@ public class ReservationServiceImpl implements ReservationService {
         List<Reservation> filterReservations = reservationRepository.findByStartDateBetween(start, end)
             .orElseThrow(() -> new EntityNotFoundException(Reservation.class));
         return filterReservations; 
+    }
+
+    @Override
+    public Map<String, Integer> getReservationCountByAllStatus(){
+        Integer completed = reservationRepository.countReservationByStatus("completed");
+        Integer cancelled = reservationRepository.countReservationByStatus("cancelled");
+        Map<String,Integer> statusCount= Map.of(Status.COMPLETED.toString(),completed,
+            Status.CANCELLED.toString(),cancelled);
+        return statusCount;
+    }
+
+    @Override
+    public List<ReservationTotalWithClientDTO> getReservationsByClient() {
+        List<ReservationTotalWithClientDTO> totalWithClient = reservationRepository.countReservationsByClient();
+        return totalWithClient;
     }
     
 }

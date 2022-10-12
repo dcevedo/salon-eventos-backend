@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ciclo3.saloneventos.dto.ReservationStatusDTO;
+import com.ciclo3.saloneventos.dto.ReservationTotalWithClientDTO;
 import com.ciclo3.saloneventos.entities.Reservation;
 import com.ciclo3.saloneventos.services.ReservationService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping(value = "/api/Reservation")
@@ -45,6 +49,26 @@ public class ReservationController {
         List<Reservation> filterReservations = reservationService.getByStartDateBetween(stringToDate(start), stringToDate(end));
         return new ResponseEntity<List<Reservation>>(filterReservations, HttpStatus.OK);
     }
+
+    @GetMapping("report-status")
+    public ResponseEntity<ReservationStatusDTO> getReservationCountByStatus(){
+        ReservationStatusDTO reservationStatusDTO = convertToStatusDTO(reservationService.getReservationCountByAllStatus());
+        return new ResponseEntity<ReservationStatusDTO>(reservationStatusDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("report-clients")
+    public ResponseEntity<List<ReservationTotalWithClientDTO>> getReservationTotalWithClient(){
+        List<ReservationTotalWithClientDTO> report = reservationService.getReservationsByClient();
+        return new ResponseEntity<List<ReservationTotalWithClientDTO>>(report, HttpStatus.OK);
+    }
+
+
+    private ReservationStatusDTO convertToStatusDTO(Map<String,Integer> mapa){
+        final ObjectMapper mapper = new ObjectMapper(); // jackson's objectmapper
+        ReservationStatusDTO reservationStatusDTO = mapper.convertValue(mapa, ReservationStatusDTO.class);
+        return reservationStatusDTO;
+    }
+
 
     private Date stringToDate(String str){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
